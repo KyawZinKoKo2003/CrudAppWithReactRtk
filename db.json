@@ -1,0 +1,41 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Buy groceries",
+      "status": "incomplete",
+      "priority": "medium",
+      "dueDate": "2023-06-30",
+      "notes": "Milk, eggs, bread"
+    },
+    {
+      "id": 2,
+      "title": "Finish project report",
+      "status": "incomplete",
+      "priority": "high",
+      "dueDate": "2023-07-05",
+      "notes": "Include sales data and analysis"
+    },
+    {
+      "title": "test",
+      "dueDate": "2023-06-15",
+      "notes": "test",
+      "status": "incomplete",
+      "id": 3
+    },
+    {
+      "title": "toCode",
+      "dueDate": "2023-06-22",
+      "notes": "with react",
+      "status": "incomplete",
+      "id": 4
+    },
+    {
+      "title": "to write",
+      "dueDate": "2023-06-21",
+      "notes": "test",
+      "status": "incomplete",
+      "id": 5
+    }
+  ]
+}
