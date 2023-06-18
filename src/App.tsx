@@ -49,7 +49,6 @@ const App = () => {
       {isLoading && <h2>Loading...</h2>}
       {isFetching && <h2>Fetching...</h2>}
       {error && <h2>Error in Fetching data</h2>}
-      {console.log(data)}
       {data &&
 
         <Box

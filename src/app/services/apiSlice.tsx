@@ -9,6 +9,10 @@ export const apiSlice:any =createApi({
             query : () => 'todos',
             providesTags: ['Todos']
         }),
+        getTodosById:builder.query({
+            query: (id) => `todos/${id}`,
+            providesTags: ['Todos']
+        }),
         putTodos: builder.mutation({
             query: (data) =>({
                 url: 'todos',
@@ -18,10 +22,10 @@ export const apiSlice:any =createApi({
             invalidatesTags: ['Todos']
         }),
         update: builder.mutation({
-            query:({id,body}) =>({
-                url: `todo/${id}`,
+            query:({id,...data}) =>({
+                url: `todos/${id}`,
                 method: 'PUT',
-                body,
+                body:data,
             }),
             invalidatesTags: ['Todos']
         }),
@@ -36,4 +40,4 @@ export const apiSlice:any =createApi({
 
 
 })
-export const{useGetTodosQuery,usePutTodosMutation,useUpdateMutation,useDeleteTodosMutation} = apiSlice;
+export const{useGetTodosQuery,useGetTodosByIdQuery,usePutTodosMutation,useUpdateMutation,useDeleteTodosMutation} = apiSlice;

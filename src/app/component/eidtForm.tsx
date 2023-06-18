@@ -1,33 +1,33 @@
 import { TextField,Button } from "@mui/material";
 import { useState } from "react";
-import { useUpdateMutation,useGetTodosQuery } from "../services/apiSlice"
- const EditForm = (id:any) =>{
-    const {data:list,isLoading} =useGetTodosQuery('');
+import { setConstantValue } from "typescript";
+import { useUpdateMutation,useGetTodosQuery, useGetTodosByIdQuery } from "../services/apiSlice"
+ const EditForm = ({id}:{id:any}) =>{
+    const {data}= useGetTodosByIdQuery(id)
     const [updateItem] = useUpdateMutation();
-    const [formData,setFormData] = useState({
-        title: list?.title || "",
-        dueDate: list?.dueDate || "",
-        notes: list?.notes || " ",
-        status: list?.status || "incomplete"
-    })
-    const handleSubmit = () =>{
-       updateItem(formData);
+    const [title,setTitle] = useState<string>("");
+    const [notes,setNotes] = useState<string>("");
+    const [dueDate,setdueDate] = useState<string>("");
+    const handleSubmit = async(e:any) =>{
+       e.preventDefault();
+       try{
+        await updateItem({id,title,dueDate,notes,status:"incomplete"});
+       }
+       catch(error){
+        console.log("error",error)
+       }
     };
-    const handleInputChange = (e:any) =>{
-        setFormData((prevData:any) =>({
-            ...prevData,
-            [e.target.name] : e.target.value
-        }));
-    }
     return(
         <>
+        {console.log(title)}
         <form onSubmit={handleSubmit}>
-            <TextField type="text" onChange={handleInputChange} name="title" />
-            <TextField type="date" name="date" onChange={handleInputChange}/>
-            <TextField type="text" name="note" onChange={handleInputChange}/>
+            <TextField type="text" value={ title} onChange={e =>setTitle(e.target.value)} />
+            <TextField type="date"  value={dueDate} onChange={e =>setdueDate(e.target.value)}/>
+            <TextField type="text" value={ notes} onChange={e =>setNotes(e.target.value)}/>
             <Button variant="contained" color="success" type="submit">Update</Button>
         </form>
         </>
     )
+    
 }
 export default EditForm;
